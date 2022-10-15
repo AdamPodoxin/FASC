@@ -1,21 +1,18 @@
 {
-  "name": "electron-quick-start",
+  "name": "fasc-app",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
+  "description": "Find A Stronger Computer, Fall Hacks 2022",
+  "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "repository": {
+    "type": "git",
+    "url": "/Users/edan/Documents/GitHub/FASC"
+  },
+  "author": "Edan",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^21.1.1"
   }
