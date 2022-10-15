@@ -32,6 +32,7 @@ const getProviders = async () => {
 	const providersList = providersSnapshot.docs.map(doc => doc.data());
 	return providersList;
 };
+window.getProviders = getProviders;
 
 const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
 	const uid = generateUID();
@@ -47,6 +48,7 @@ const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
 
 	return uid;
 };
+window.registerAccount = registerAccount;
 
 const sendCompileRequest = async (from, to, fileURL, instructions) => {
 	await setDoc(doc(db, "compile_requests", `${from}_${to}`), {
@@ -56,6 +58,7 @@ const sendCompileRequest = async (from, to, fileURL, instructions) => {
 		instructions
 	});
 };
+window.sendCompileRequest = sendCompileRequest;
 
 const sendCodeFile = async (from, to, file) => {
 	const storageRef = ref(storage, `code_files/${from}_${to}/${file.name}`);
@@ -64,6 +67,7 @@ const sendCodeFile = async (from, to, file) => {
 	const url = await getDownloadURL(storageRef);
 	return url;
 };
+window.sendCodeFile = sendCodeFile;
 
 const sendCompiledMessage = async (from, to, fileURL) => {
 	await setDoc(doc(db, "compiled_messages", `${from}_${to}`), {
@@ -72,6 +76,7 @@ const sendCompiledMessage = async (from, to, fileURL) => {
 		fileURL
 	});
 };
+window.sendCompiledMessage = sendCompiledMessage;
 
 const sendCompiledFile = async (from, to, fileURL) => {
 	const storageRef = ref(storage, `compiled_files/${from}_${to}/${file.name}`);
@@ -80,3 +85,4 @@ const sendCompiledFile = async (from, to, fileURL) => {
 	const url = await getDownloadURL(storageRef);
 	return url;
 };
+window.sendCompiledFile = sendCompiledFile;
