@@ -9,9 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "/Users/edan/Documents/GitHub/FASC"
+    "url": "https://github.com/AdamPodoxin/FASC"
   },
-  "author": "Edan",
+  "author": "TEA",
   "license": "MIT",
   "devDependencies": {
     "electron": "^21.1.1"
