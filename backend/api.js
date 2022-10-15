@@ -72,3 +72,11 @@ const sendCompiledMessage = async (from, to, fileURL) => {
 		fileURL
 	});
 };
+
+const sendCompiledFile = async (from, to, fileURL) => {
+	const storageRef = ref(storage, `compiled_files/${from}_${to}/${file.name}`);
+	await uploadBytes(storageRef, file);
+
+	const url = await getDownloadURL(storageRef);
+	return url;
+};
