@@ -1,5 +1,5 @@
-0# FASC
-Find A Stronger Computer: compile code on a stronger computer than yours to save time. Fall Hacks 2022.
+# FASC
+Find A Stronger Computer: Compile code on a stronger computer than yours to save time. Fall Hacks 2022.
 
 How to run:
 # Go into the repository
