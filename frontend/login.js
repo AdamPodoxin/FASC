@@ -1,14 +1,18 @@
-document.getElementById("myButton").addEventListener("login-form-submit", uploadCodeFile);
-
 const uploadCodeFile = () => {
-    const user = {
-      CPU:loginForm.CPU.value,
-      GPU:loginForm.GPU.value,
-      OS: loginForm.OS.value,
-      RAM: loginForm.RAM.value,
-      languages: loginForm.language.value.split(","),
-    }
+    let cpu = document.getElementById("cpu").value;
+    let gpu = document.getElementById("gpu").value;
+    let os = document.getElementById("os").value;
+    let ram = document.getElementById("ram").value;
+    let lang = document.getElementById("lang").value.split(",");
 
-    document.getElementById("dem2").innerHTML = "balls"; 
-    document.getElementById("demo").innerHTML = "bballs"; 
+    const user = {
+      CPU:cpu,
+      GPU:gpu,
+      OS:os,
+      RAM:ram,
+      languages:lang,
+    }
+    console.log(user);
 }
+
+document.getElementById("login-form-submit").addEventListener("click", uploadCodeFile);

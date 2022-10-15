@@ -29,7 +29,7 @@ body {
 
 .field {
   width: 95%;
-  padding: 7px;
+  padding: 3px;
   margin: 3px;
   border: none;
   border-radius: 5px;
@@ -47,4 +47,8 @@ body {
   background-color: #3a3a3a;
   cursor: pointer;
   outline: none;
+}
+
+#login-form-submit:active {
+  background-color: #282828;
 }
