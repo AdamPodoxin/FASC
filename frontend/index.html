@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
-    <link href="./styles.css" rel="stylesheet">
+    <link href="./loginstyles.css" rel="stylesheet">
     <title>Find a Stronger Computer</title>
   </head>
   <body>
-    Provider Page
+    <div id="center">
+    </div>
+    <div id="loginbox">
+      <h1>FASC</h1>
+      <form id="login-form">
+        <input type="text" name="username" id="field" class="login-form-field" placeholder="Username">
+        <input type="password" name="password" id="field" class="login-form-field" placeholder="Password">
+        <input type="submit" value="Login" id="login-form-submit">
+      </form>
+    </div>
     
     <script src="./renderer.js"></script>
   </body>

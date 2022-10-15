@@ -1,8 +1,8 @@
 {
-  "name": "fasc-app",
+  "name": "electron-quick-start",
   "version": "1.0.0",
   "description": "Find A Stronger Computer, Fall Hacks 2022",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron ."
