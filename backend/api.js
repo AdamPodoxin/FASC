@@ -37,12 +37,12 @@ const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
 	const uid = generateUID();
 
 	await setDoc(doc(db, "providers", uid), {
-		name: name,
-		CPU: CPU,
-		GPU: GPU,
-		RAM: RAM,
-		OS: OS,
-		languages: languages
+		name,
+		CPU,
+		GPU,
+		RAM,
+		OS,
+		languages
 	});
 
 	return uid;
