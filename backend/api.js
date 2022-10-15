@@ -1,6 +1,7 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-import { getFirestore, collection, getDocs, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js';
+import { getFirestore, collection, query, where, getDocs, getDoc, setDoc, doc, onSnapshot  } from 'https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js';
+import { getStorage, ref, getDownloadURL, uploadBytes } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -45,4 +46,13 @@ const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
 	});
 
 	return uid;
+};
+
+const sendCompileRequest = async (from, to, fileURL, instructions) => {
+	await setDoc(doc(db, "compile_requests", `${from}_${to}`), {
+		from,
+		to,
+		fileURL,
+		instructions
+	});
 };
