@@ -1,6 +1,7 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-import { getFirestore, collection, getDocs, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js';
+import { getFirestore, collection, query, where, getDocs, getDoc, setDoc, doc, onSnapshot  } from 'https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js';
+import { getStorage, ref, getDownloadURL, uploadBytes } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -31,18 +32,57 @@ const getProviders = async () => {
 	const providersList = providersSnapshot.docs.map(doc => doc.data());
 	return providersList;
 };
+window.getProviders = getProviders;
 
 const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
 	const uid = generateUID();
 
 	await setDoc(doc(db, "providers", uid), {
-		name: name,
-		CPU: CPU,
-		GPU: GPU,
-		RAM: RAM,
-		OS: OS,
-		languages: languages
+		name,
+		CPU,
+		GPU,
+		RAM,
+		OS,
+		languages
 	});
 
 	return uid;
 };
+window.registerAccount = registerAccount;
+
+const sendCompileRequest = async (from, to, fileURL, instructions) => {
+	await setDoc(doc(db, "compile_requests", `${from}_${to}`), {
+		from,
+		to,
+		fileURL,
+		instructions
+	});
+};
+window.sendCompileRequest = sendCompileRequest;
+
+const sendCodeFile = async (from, to, file) => {
+	const storageRef = ref(storage, `code_files/${from}_${to}/${file.name}`);
+	await uploadBytes(storageRef, file);
+
+	const url = await getDownloadURL(storageRef);
+	return url;
+};
+window.sendCodeFile = sendCodeFile;
+
+const sendCompiledMessage = async (from, to, fileURL) => {
+	await setDoc(doc(db, "compiled_messages", `${from}_${to}`), {
+		from,
+		to,
+		fileURL
+	});
+};
+window.sendCompiledMessage = sendCompiledMessage;
+
+const sendCompiledFile = async (from, to, fileURL) => {
+	const storageRef = ref(storage, `compiled_files/${from}_${to}/${file.name}`);
+	await uploadBytes(storageRef, file);
+
+	const url = await getDownloadURL(storageRef);
+	return url;
+};
+window.sendCompiledFile = sendCompiledFile;
