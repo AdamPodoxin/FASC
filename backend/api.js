@@ -16,6 +16,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// https://stackoverflow.com/a/6248722
+const generateUID = () => {
+    var firstPart = (Math.random() * 46656) | 0;
+    var secondPart = (Math.random() * 46656) | 0;
+    firstPart = ("000" + firstPart.toString(36)).slice(-3);
+    secondPart = ("000" + secondPart.toString(36)).slice(-3);
+    return firstPart + secondPart;
+}
+
 const getProviders = async () => {
 	const providersCollection = collection(db, "providers");
 	const providersSnapshot = await getDocs(providersCollection);
@@ -24,7 +33,9 @@ const getProviders = async () => {
 };
 
 const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
-	await setDoc(doc(db, "providers", name), {
+	const uid = generateUID();
+
+	await setDoc(doc(db, "providers", uid), {
 		name: name,
 		CPU: CPU,
 		GPU: GPU,
@@ -32,4 +43,6 @@ const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
 		OS: OS,
 		languages: languages
 	});
+
+	return uid;
 };
