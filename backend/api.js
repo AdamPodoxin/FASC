@@ -1,6 +1,6 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-import { getFirestore, collection, query, where, getDocs, getDoc, setDoc, doc, onSnapshot  } from 'https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js';
+import { getFirestore, collection, deleteDoc, query, where, getDocs, getDoc, setDoc, doc, onSnapshot  } from 'https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js';
 import { getStorage, ref, getDownloadURL, uploadBytes } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
 
 // Your web app's Firebase configuration
@@ -86,3 +86,8 @@ const sendCompiledFile = async (from, to, file) => {
 	return url;
 };
 window.sendCompiledFile = sendCompiledFile;
+
+const deleteAccount = async (uid) => {
+	await deleteDoc(doc(db, "providers", uid));
+};
+window.deleteAccount = deleteAccount;
