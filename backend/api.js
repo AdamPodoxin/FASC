@@ -56,3 +56,11 @@ const sendCompileRequest = async (from, to, fileURL, instructions) => {
 		instructions
 	});
 };
+
+const sendCodeFile = async (from, to, file) => {
+	const storageRef = ref(storage, `code_files/${from}_${to}/${file.name}`);
+	await uploadBytes(storageRef, file);
+
+	const url = await getDownloadURL(storageRef);
+	return url;
+};
