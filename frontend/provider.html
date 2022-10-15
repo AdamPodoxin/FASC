@@ -1,4 +1,4 @@
-<!DOCTYPE html>
++<!DOCTYPE html>
 <!-- page that opens if user chooses to host -->
 <html>
   <head>
@@ -12,18 +12,21 @@
     <script type = "text/javascript">
         function processAndReturn(fileName)
         {
-            // Automatically download file
-            console.log("Downloading...");
-            document.location.href = fileName;
+          // Automatically download file
+          console.log("Downloading...");
+          document.location.href = fileName;
 
-            // Run shell command to compile
-            const execSync = require('child_process').execSync;
-
-            const output = execSync('gcc ${fileName}', { encoding: 'utf-8' });  // the default is 'buffer'
-            console.log("Compiling...");
+          // Run shell command to compile
+          const execSync = require('child_process').execSync;
+          console.log("Compiling...");
+          const output = execSync('gcc -o ${fileName} ${fileName}.c', { encoding: 'utf-8' });  // the default is 'buffer'
+          
+          // Send back
+          return output;
         }
 
-        var fileName = "whateverthefuckAdamissendingme";
+        // When a file is sent
+        var fileName = "whateverthefuckAdamissendingme.c";
         processAndReturn(fileName);
     </script>
     Waiting...
