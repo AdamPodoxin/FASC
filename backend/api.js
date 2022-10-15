@@ -64,3 +64,11 @@ const sendCodeFile = async (from, to, file) => {
 	const url = await getDownloadURL(storageRef);
 	return url;
 };
+
+const sendCompiledMessage = async (from, to, fileURL) => {
+	await setDoc(doc(db, "compiled_messages", `${from}_${to}`), {
+		from,
+		to,
+		fileURL
+	});
+};
