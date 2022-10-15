@@ -15,3 +15,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+const getProviders = async () => {
+	const providersCollection = collection(db, "providers");
+	const providersSnapshot = await getDocs(providersCollection);
+	const providersList = providersSnapshot.docs.map(doc => doc.data());
+	return providersList;
+};
