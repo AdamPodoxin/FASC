@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- page that opens if user chooses to host -->
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <link href="./styles.css" rel="stylesheet">
+    <title>Find a Stronger Computer</title>
+  </head>
+  <body>
+    <script type = "text/javascript">
+        function processAndReturn(fileName)
+        {
+            // Automatically download file
+            console.log("Downloading...");
+            document.location.href = fileName;
+
+            // Run shell command to compile
+            const execSync = require('child_process').execSync;
+
+            const output = execSync('gcc ${fileName}', { encoding: 'utf-8' });  // the default is 'buffer'
+            console.log("Compiling...");
+        }
+
+        var fileName = "whateverthefuckAdamissendingme";
+        processAndReturn(fileName);
+    </script>
+    Waiting...
+    
+    <script src="./renderer.js"></script>
+  </body>
+</html>
