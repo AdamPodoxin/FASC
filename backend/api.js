@@ -22,3 +22,14 @@ const getProviders = async () => {
 	const providersList = providersSnapshot.docs.map(doc => doc.data());
 	return providersList;
 };
+
+const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
+	await setDoc(doc(db, "providers", name), {
+		name: name,
+		CPU: CPU,
+		GPU: GPU,
+		RAM: RAM,
+		OS: OS,
+		languages: languages
+	});
+};
