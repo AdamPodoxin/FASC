@@ -78,7 +78,7 @@ const sendCompiledMessage = async (from, to, fileURL) => {
 };
 window.sendCompiledMessage = sendCompiledMessage;
 
-const sendCompiledFile = async (from, to, fileURL) => {
+const sendCompiledFile = async (from, to, file) => {
 	const storageRef = ref(storage, `compiled_files/${from}_${to}/${file.name}`);
 	await uploadBytes(storageRef, file);
 
