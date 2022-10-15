@@ -10,15 +10,22 @@
   <body>
     <div id="center">
     </div>
+    <a href="./provider.html">click me -> provider.html</a>
     <div id="loginbox">
       <h1>FASC</h1>
-      <form id="login-form">
-        <input type="text" name="username" id="field" class="login-form-field" placeholder="Username">
-        <input type="password" name="password" id="field" class="login-form-field" placeholder="Password">
-        <input type="submit" value="Login" id="login-form-submit">
-      </form>
+      Find A Stronger Computer<br><br>
+      <textarea class="field" id="cpu" placeholder="CPU"></textarea>
+      <textarea class="field" id="gpu" placeholder="GPU"></textarea>
+      <textarea class="field" id="os" placeholder="OS"></textarea>
+      <textarea class="field" id="ram" placeholder="RAM"></textarea>
+      <textarea class="field" id="lang" placeholder="Languages (Separate by comma without spaces)"></textarea>
+        <button id="login-form-submit">Upload</button>
+
+      <p id="dem2"></p>
+      <p id="demo"></p>
     </div>
     
-    <script src="./renderer.js"></script>
+    <script src="./login.js"></script>
+    
   </body>
 </html>
