@@ -18,7 +18,10 @@ div {
 
   text-align: center;
 }
-
+#list {
+  width: 90%;
+  text-align: left;
+}
 .side {
   float: left;
 }
@@ -43,7 +46,30 @@ li a {
   text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
 li a:hover {
-  background-color: #111;
+  background-color: #f5a93f;
+}
+
+a:link {
+  color: rgb(28, 161, 233);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #f5a93f;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: rgb(255, 255, 255);
+  background-color: transparent;
+  text-decoration: underline;
 }
