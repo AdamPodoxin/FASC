@@ -38,4 +38,6 @@ const upload = async () => {
 	await sendCompiledMessage(uid, toClientUID, url);
 
 	deleteCompileRequest(toClientUID, uid);
+
+	window.location = "./provider.html";
 };
