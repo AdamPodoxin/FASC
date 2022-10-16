@@ -4,19 +4,46 @@ body {
   color: #ffffff;
 }
 
+#body {
+  margin: auto;
+}
+
+div {
+  top: 50%;
+  background-color: #1f1f1f;
+  border-radius: 25px;
+  padding: 20px;
+  margin: 10px;
+  width: 300px;
+
+  text-align: center;
+}
+
+.side {
+  float: left;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  background-color: #333;
 }
 
 li {
-  list-style: none;
-  display: inline-block;
   float: left;
 }
 
-a {
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
-  color: #ffffff;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
 }

@@ -9,6 +9,8 @@ const registration = async () => {
     
     let uid = await registerAccount(name, cpu, gpu, os, ram, lang);
     localStorage.setItem("uid", uid);
+
+    window.location.href = "./landing.html";
 }
 
 document.getElementById("login-form-submit").addEventListener("click", registration);

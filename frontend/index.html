@@ -10,8 +10,6 @@
     <script type="module" src="../backend/api.js" defer></script>
   </head>
   <body>
-    <div id="center">
-    </div>
     <a href="./provider.html">click me -> provider.html</a>
     <div id="loginbox">
       <h1>FASC</h1>
@@ -27,6 +25,14 @@
     </div>
     
     <script src="./login.js"></script>
+    <script>
+      window.onload = function checklogin() {
+        let uid = localStorage.getItem('uid');
+        if (uid != null) {
+          window.location.href = "./landing.html";
+        }
+      }
+    </script>
     
   </body>
 </html>

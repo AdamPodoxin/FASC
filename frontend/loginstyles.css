@@ -15,10 +15,6 @@ body {
   text-align: center;
 }
 
-#center {
-  height: 25px;
-}
-
 #login-form {
   align-self: flex-start;
   display: grid;
