@@ -7,14 +7,23 @@
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./styles.css" rel="stylesheet">
     <title>Find a Stronger Computer</title>
+    <style>
+      div {
+        width: 300px;
+        margin: auto;
+        border: 3px solid #4379d1;
+        position: relative;
+        top: 40%;
+        transform: translateY(-50%);
+      }
+    </style>
     <script type="module" src="../backend/api.js" defer></script>
   </head>
   <body>
 
     <ul>
-      <li><a class="active" href="#home">Home</a></li>
-      <li><a href="#news">News</a></li>
-      <li id="user"><a href="#about">About</a></li>
+      <li><a class="Client" href="./client.html">Client</a></li>
+      <li><a href="./provider.html">Provider</a></li>
     </ul>
 
     <div id="body">
@@ -25,9 +34,15 @@
 
     <div class= 'side'>
       <h1>Client</h1>
+      <body>
+        Request another computer with a more powerful CPU to compile your code!
+      </body>
     </div>
     <div class= 'side'>
       <h1>Provider</h1>
+      <body>
+        Offer up your processing power to help compile code for a client!
+      </body>
     </div>
   </body>
 </html>
