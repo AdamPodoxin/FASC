@@ -94,11 +94,12 @@ const sendCodeFile = async (from, to, file) => {
 };
 window.sendCodeFile = sendCodeFile;
 
-const sendCompiledMessage = async (from, to, fileURL) => {
+const sendCompiledMessage = async (from, to, fileURL, fileName) => {
 	await setDoc(doc(db, "compiled_messages", `${from}_${to}`), {
 		from,
 		to,
 		fileURL,
+		fileName,
 	});
 };
 window.sendCompiledMessage = sendCompiledMessage;
@@ -121,6 +122,11 @@ const deleteCompileRequest = async (from, to) => {
 	await deleteDoc(doc(db, "compile_requests", `${from}_${to}`));
 };
 window.deleteCompileRequest = deleteCompileRequest;
+
+const deleteCompiledMessage = async (name) => {
+	await deleteDoc(doc(db, "compiled_messages", name));
+};
+window.deleteCompiledMessage = deleteCompiledMessage;
 
 const downloadFile = async (url) => {
 	const xhr = new XMLHttpRequest();
@@ -163,3 +169,15 @@ const getCompileRequestList = async (providerID) => {
 	return queryArray;
 };
 window.getCompileRequestList = getCompileRequestList;
+
+const getCompletedRequestsList = async (clientID) => {
+	const compileRequestsRef = collection(db, "compiled_messages");
+	const q = query(compileRequestsRef, where("to", "==", clientID));
+	const querySnapshot = await getDocs(q);
+
+	let queryArray = [];
+	querySnapshot.forEach((doc) => queryArray.push(doc.data()));
+
+	return queryArray;
+};
+window.getCompletedRequestsList = getCompletedRequestsList;

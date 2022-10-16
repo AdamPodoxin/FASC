@@ -35,7 +35,7 @@ const upload = async () => {
 	const selectedFile = document.getElementById("file").files[0];
 
 	const url = await sendCompiledFile(uid, toClientUID, selectedFile);
-	await sendCompiledMessage(uid, toClientUID, url);
+	await sendCompiledMessage(uid, toClientUID, url, selectedFile.name);
 
 	deleteCompileRequest(toClientUID, uid);
 
