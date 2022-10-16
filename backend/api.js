@@ -1,16 +1,32 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-import { getFirestore, collection, deleteDoc, query, where, getDocs, getDoc, setDoc, doc, onSnapshot  } from 'https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js';
-import { getStorage, ref, getDownloadURL, uploadBytes } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
+import {
+	getFirestore,
+	collection,
+	deleteDoc,
+	query,
+	where,
+	getDocs,
+	getDoc,
+	setDoc,
+	doc,
+	onSnapshot,
+} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+import {
+	getStorage,
+	ref,
+	getDownloadURL,
+	uploadBytes,
+} from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCfIy85p1fGmZwdfSacgFGic2Htzu2-YgM",
-  authDomain: "fasc-ec621.firebaseapp.com",
-  projectId: "fasc-ec621",
-  storageBucket: "fasc-ec621.appspot.com",
-  messagingSenderId: "885995656780",
-  appId: "1:885995656780:web:07beae9e0c1c0a401186e9"
+	apiKey: "AIzaSyCfIy85p1fGmZwdfSacgFGic2Htzu2-YgM",
+	authDomain: "fasc-ec621.firebaseapp.com",
+	projectId: "fasc-ec621",
+	storageBucket: "fasc-ec621.appspot.com",
+	messagingSenderId: "885995656780",
+	appId: "1:885995656780:web:07beae9e0c1c0a401186e9",
 };
 
 // Initialize Firebase
@@ -20,17 +36,17 @@ const storage = getStorage(app);
 
 // https://stackoverflow.com/a/6248722
 const generateUID = () => {
-    var firstPart = (Math.random() * 46656) | 0;
-    var secondPart = (Math.random() * 46656) | 0;
-    firstPart = ("000" + firstPart.toString(36)).slice(-3);
-    secondPart = ("000" + secondPart.toString(36)).slice(-3);
-    return firstPart + secondPart;
-}
+	var firstPart = (Math.random() * 46656) | 0;
+	var secondPart = (Math.random() * 46656) | 0;
+	firstPart = ("000" + firstPart.toString(36)).slice(-3);
+	secondPart = ("000" + secondPart.toString(36)).slice(-3);
+	return firstPart + secondPart;
+};
 
 const getProviders = async () => {
 	const providersCollection = collection(db, "providers");
 	const providersSnapshot = await getDocs(providersCollection);
-	const providersList = providersSnapshot.docs.map(doc => doc.data());
+	const providersList = providersSnapshot.docs.map((doc) => doc.data());
 	return providersList;
 };
 window.getProviders = getProviders;
@@ -45,20 +61,26 @@ const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
 		GPU,
 		RAM,
 		OS,
-		languages
+		languages,
 	});
 
 	return uid;
 };
 window.registerAccount = registerAccount;
 
-const sendCompileRequest = async (from, to, fileURL, fileName, instructions) => {
+const sendCompileRequest = async (
+	from,
+	to,
+	fileURL,
+	fileName,
+	instructions
+) => {
 	await setDoc(doc(db, "compile_requests", `${from}_${to}`), {
 		from,
 		to,
 		fileURL,
 		fileName,
-		instructions
+		instructions,
 	});
 };
 window.sendCompileRequest = sendCompileRequest;
@@ -76,7 +98,7 @@ const sendCompiledMessage = async (from, to, fileURL) => {
 	await setDoc(doc(db, "compiled_messages", `${from}_${to}`), {
 		from,
 		to,
-		fileURL
+		fileURL,
 	});
 };
 window.sendCompiledMessage = sendCompiledMessage;
@@ -95,16 +117,21 @@ const deleteAccount = async (uid) => {
 };
 window.deleteAccount = deleteAccount;
 
-const downloadFile = async(url) => {
+const deleteCompileRequest = async (from, to) => {
+	await deleteDoc(doc(db, "compile_requests", `${from}_${to}`));
+};
+window.deleteCompileRequest = deleteCompileRequest;
+
+const downloadFile = async (url) => {
 	const xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
+	xhr.responseType = "blob";
 
-    xhr.onload = (event) => {
-      const blob = xhr.response;
-    };
+	xhr.onload = (event) => {
+		const blob = xhr.response;
+	};
 
-    xhr.open('GET', url);
-    xhr.send();
+	xhr.open("GET", url);
+	xhr.send();
 };
 window.downloadFile = downloadFile;
 
@@ -118,9 +145,21 @@ const getCodeFileDownload = async (from, to) => {
 	const instructions = data.instructions;
 
 	return {
-		url, 
+		url,
 		fileName,
-		instructions
+		instructions,
 	};
 };
 window.getCodeFileDownload = getCodeFileDownload;
+
+const getCompileRequestList = async (providerID) => {
+	const compileRequestsRef = collection(db, "compile_requests");
+	const q = query(compileRequestsRef, where("to", "==", providerID));
+	const querySnapshot = await getDocs(q);
+
+	let queryArray = [];
+	querySnapshot.forEach((doc) => queryArray.push(doc.data()));
+
+	return queryArray;
+};
+window.getCompileRequestList = getCompileRequestList;
