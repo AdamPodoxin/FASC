@@ -3,16 +3,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./styles.css" rel="stylesheet">
   <title>Find a Stronger Computer</title>
   <script type="module" src="../backend/api.js" defer></script>
+  <script src="./client.js" defer></script>
 </head>
 
 <body>
-
   <ul>
     <li><a class="Client" href="./client.html">Client</a></li>
     <li><a href="./provider.html">Provider</a></li>
@@ -20,41 +19,7 @@
 
   <div id="list">
     <p>Name, CPU, GPU, OS, RAM, Languages Supported</p>
-
   </div>
-  <script>
-    window.onload = async function checkproviders() {
-      let arr = await getProviders();
-
-      arr.forEach(provider => {
-        const element = document.getElementById("list");
-
-        const a = document.createElement('a');
-        const aNode = document.createTextNode("Choose this provider.");
-        a.appendChild(aNode);
-        a.href = "./request.html";
-        a.id = provider.uid;
-        a.addEventListener("click", (a) => {
-          localStorage.setItem("to_provider_uid", a.path[0].id);
-        });
-        element.appendChild(a)
-
-        const para = document.createElement("p");
-        const node = document.createTextNode(
-          provider.name + ", " +
-          provider.CPU + ", " +
-          provider.GPU + ", " +
-          provider.OS + ", " +
-          provider.RAM + ", " +
-          provider.languages
-        );
-        para.appendChild(node);
-        element.appendChild(para);
-      });
-
-
-    }
-  </script>
 </body>
 
 </html>
