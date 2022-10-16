@@ -1,12 +1,23 @@
-<!DOCTYPE html>
++<!DOCTYPE html>
 <!-- page that opens if user chooses to host -->
 <html>
 
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link href="./styles.css" rel="stylesheet">
     <title>Find a Stronger Computer</title>
+    <style>
+      div {
+        width: 300px;
+        margin: auto;
+        border: 3px solid #4379d1;
+        position: relative;
+        top: 40%;
+        transform: translateY(-50%);
+      }
+    </style>
   </head>
   <body>
     <script type = "text/javascript">
@@ -26,11 +37,10 @@
     </script>
 
     <div id="center">
+      <input type="file" id="file">
+      <button onclick="uploadCodeFile()">Send Back To Client</button>
     </div>
-      Waiting...
 
-      <textarea id="instructions"></textarea>
-        <input type="file" id="file">
-        <button onclick="uploadCodeFile()">Upload</button>
+    <script src="./renderer.js"></script>
   </body>
 </html>
