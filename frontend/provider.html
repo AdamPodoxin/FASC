@@ -1,4 +1,5 @@
-+<!DOCTYPE html>
+ .
+<!DOCTYPE html>
 <!-- page that opens if user chooses to host -->
 <html>
 
@@ -26,24 +27,10 @@
       <li><a class="Client" href="./client.html">Client</a></li>
       <li><a href="./provider.html">Provider</a></li>
     </ul>
-    <script type = "text/javascript">
-
-      function download(fileUrl, fileName)
-      {
-        var a = document.createElement("a");
-        a.href = fileUrl;
-        a.setAttribute("download", fileName);
-        a.click();
-      }
-
-        // When a file is sent. How do I do this?
-        // var fileUrl = "https://firebasestorage.googleapis.com/v0/b/fasc-ec621.appspot.com/o/code_files%2Fmain.c?alt=media&token=bb86377a-2d81-4d5e-9559-9e678a93f0b8";
-        // download(fileUrl, "main");
-
-    </script>
 
     <div id="center">
-      <a href="https://www.w3schools.com/images/myw3schoolsimage.jpg" id="download-link" download>Download file to compile</a>
+      <p>File has been downloaded. Please compile per instructions and send compiled file back to client.</p>
+      <p id="instructions">Instructions: </p>
       <input type="file" id="file">
       <button onclick="upload();">Send Back To Client</button>
     </div>

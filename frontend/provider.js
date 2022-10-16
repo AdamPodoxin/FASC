@@ -33,8 +33,12 @@ function forceDownload(blob, filename) {
 	  .catch(e => console.error(e));
   }
 
-getFileDownloadURL("compile_requests", toClientUID, uid).then(url => downloadResource(url));
-  
+getCodeFileDownload(toClientUID, uid).then(data => {
+	console.log(data.instructions);
+	document.getElementById("instructions").innerHTML += data.instructions;
+	downloadResource(data.url, data.fileName);
+
+});
 
 const upload = async () => {
 	const selectedFile = document.getElementById("file").files[0];

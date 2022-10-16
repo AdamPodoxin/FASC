@@ -52,11 +52,12 @@ const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
 };
 window.registerAccount = registerAccount;
 
-const sendCompileRequest = async (from, to, fileURL, instructions) => {
+const sendCompileRequest = async (from, to, fileURL, fileName, instructions) => {
 	await setDoc(doc(db, "compile_requests", `${from}_${to}`), {
 		from,
 		to,
 		fileURL,
+		fileName,
 		instructions
 	});
 };
@@ -107,10 +108,19 @@ const downloadFile = async(url) => {
 };
 window.downloadFile = downloadFile;
 
-const getFileDownloadURL = async (collectionName, from, to) => {
-	const docRef = doc(db, collectionName, `${from}_${to}`);
+const getCodeFileDownload = async (from, to) => {
+	const docRef = doc(db, "compile_requests", `${from}_${to}`);
 	const docSnap = await getDoc(docRef);
 
-	return docSnap.data().fileURL;
+	const data = docSnap.data();
+	const url = data.fileURL;
+	const fileName = data.fileName;
+	const instructions = data.instructions;
+
+	return {
+		url, 
+		fileName,
+		instructions
+	};
 };
-window.getFileDownloadURL = getFileDownloadURL;
+window.getCodeFileDownload = getCodeFileDownload;
