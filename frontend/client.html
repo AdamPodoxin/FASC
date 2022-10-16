@@ -12,29 +12,39 @@
   <body>
 
     <ul>
-      <li><a href="#home">Client</a></li>
-      <li><a href="#news">Provider</a></li>
+      <li><a class="Client" href="./client.html">Client</a></li>
+      <li><a href="./provider.html">Provider</a></li>
     </ul>
 
-    <div id="list"></div>
+    <div id="list">
+      <p>Name, CPU, GPU, OS, RAM, Languages Supported</p>
+
+    </div>
     <script>
-      window.onload = function checkproviders() {
-        let arr = getProviders();
+      window.onload = async function checkproviders() {
+        let arr = await getProviders();
+        console.log("balls");
         console.log(arr);
 
         const p = document.createElement("p");
         const n = document.createTextNode("Name, Cpu");
 
+        console.log(arr[1].CPU);
         for (i = 0; i < arr.length; i++) {
           const para = document.createElement("p");
-          const node = document.createTextNode("");
+          const node = document.createTextNode(
+            arr[i].name + ", " +
+            arr[i].CPU + ", " +
+            arr[i].GPU + ", " +
+            arr[i].OS + ", " +
+            arr[i].RAM + ", " +
+            arr[i].languages
+          );
+          para.appendChild(node);
 
-          node.concat(arr[i].name + ", ");
-          node.concat(arr[i].cpu + ", ");
-          node.concat(arr[i].gpu + ", ");
-          node.concat(arr[i].os + ", ");
-          node.concat(arr[i].ram + ", ");
-          node.concat(arr[i].lang + ", ");
+          console.log(node);
+          const element = document.getElementById("list");
+          element.appendChild(para)
         }
       }
     </script>

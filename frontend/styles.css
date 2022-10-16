@@ -47,3 +47,8 @@ li a {
 li a:hover {
   background-color: #111;
 }
+
+#list {
+  width: 90%;
+  text-align: left;
+}
