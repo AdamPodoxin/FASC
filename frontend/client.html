@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles.css" rel="stylesheet">
+    <title>Find a Stronger Computer</title>
+    <script type="module" src="../backend/api.js" defer></script>
+  </head>
+  <body>
+
+    <ul>
+      <li><a href="#home">Client</a></li>
+      <li><a href="#news">Provider</a></li>
+    </ul>
+
+    <div id="list"></div>
+    <script>
+      window.onload = function checkproviders() {
+        let arr = getProviders();
+        console.log(arr);
+
+        const p = document.createElement("p");
+        const n = document.createTextNode("Name, Cpu");
+
+        for (i = 0; i < arr.length; i++) {
+          const para = document.createElement("p");
+          const node = document.createTextNode("");
+
+          node.concat(arr[i].name + ", ");
+          node.concat(arr[i].cpu + ", ");
+          node.concat(arr[i].gpu + ", ");
+          node.concat(arr[i].os + ", ");
+          node.concat(arr[i].ram + ", ");
+          node.concat(arr[i].lang + ", ");
+        }
+      }
+    </script>
+  </body>
+</html>
