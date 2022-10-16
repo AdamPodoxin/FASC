@@ -92,3 +92,24 @@ const deleteAccount = async (uid) => {
 	await deleteDoc(doc(db, "providers", uid));
 };
 window.deleteAccount = deleteAccount;
+
+const downloadFile = async(url) => {
+	const xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+
+    xhr.onload = (event) => {
+      const blob = xhr.response;
+    };
+
+    xhr.open('GET', url);
+    xhr.send();
+};
+window.downloadFile = downloadFile;
+
+const getFileDownloadURL = async (collectionName, from, to) => {
+	const docRef = doc(db, collectionName, `${from}_${to}`);
+	const docSnap = await getDoc(docRef);
+
+	return docSnap.data().fileURL;
+};
+window.getFileDownloadURL = getFileDownloadURL;
