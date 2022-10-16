@@ -1,7 +1,6 @@
 getCompileRequestList(localStorage.getItem("uid")).then((arr) => {
 	arr.forEach((fileData) => {
 		const element = document.getElementById("list");
-		console.log(fileData);
 
 		const a = document.createElement("a");
 		const aNode = document.createTextNode("Compile this file.");

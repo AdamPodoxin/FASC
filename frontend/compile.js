@@ -27,7 +27,6 @@ function downloadResource(url, filename) {
 }
 
 getCodeFileDownload(toClientUID, uid).then((data) => {
-	console.log(data.instructions);
 	document.getElementById("instructions").innerHTML += data.instructions;
 	downloadResource(data.url, data.fileName);
 });
