@@ -1,0 +1,39 @@
+.
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link href="./styles.css" rel="stylesheet">
+	<title>Find a Stronger Computer</title>
+	<style>
+		div {
+			width: 300px;
+			margin: auto;
+			border: 3px solid #4379d1;
+			position: relative;
+			top: 40%;
+			transform: translateY(-50%);
+		}
+	</style>
+
+	<script type="module" src="../backend/api.js" defer></script>
+	<script src="./compile.js" defer></script>
+
+</head>
+
+<body>
+	<ul>
+		<li><a class="Client" href="./client.html">Client</a></li>
+		<li><a href="./provider.html">Provider</a></li>
+	</ul>
+
+	<div id="center">
+		<p>File has been downloaded. Please compile per instructions and send compiled file back to client.</p>
+		<p id="instructions">Instructions: </p>
+		<input type="file" id="file">
+		<button onclick="upload();">Send Back To Client</button>
+	</div>
+</body>
+
+</html>

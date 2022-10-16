@@ -1,38 +1,15 @@
- .
 <!DOCTYPE html>
-<!-- page that opens if user chooses to host -->
-<html>
+<html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <link href="./styles.css" rel="stylesheet">
-    <title>Find a Stronger Computer</title>
-    <style>
-      div {
-        width: 300px;
-        margin: auto;
-        border: 3px solid #4379d1;
-        position: relative;
-        top: 40%;
-        transform: translateY(-50%);
-      }
-    </style>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider View</title>
+</head>
 
-	<script type="module" src="../backend/api.js" defer></script>
-	<script src="./provider.js" defer></script>
+<body>
 
-  </head>
-  <body>
-    <ul>
-      <li><a class="Client" href="./client.html">Client</a></li>
-      <li><a href="./provider.html">Provider</a></li>
-    </ul>
+</body>
 
-    <div id="center">
-      <p>File has been downloaded. Please compile per instructions and send compiled file back to client.</p>
-      <p id="instructions">Instructions: </p>
-      <input type="file" id="file">
-      <button onclick="upload();">Send Back To Client</button>
-    </div>
-  </body>
 </html>
