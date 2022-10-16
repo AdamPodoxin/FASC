@@ -23,23 +23,16 @@
     <script>
       window.onload = async function checkproviders() {
         let arr = await getProviders();
-        console.log("balls");
         console.log(arr);
-
-        const p = document.createElement("p");
-        const n = document.createTextNode("Name, Cpu");
 
         console.log(arr[1].CPU);
         for (i = 0; i < arr.length; i++) {
-          const para = document.createElement("p");
-          const node = document.createTextNode(
-            arr[i].name + ", " +
-            arr[i].CPU + ", " +
-            arr[i].GPU + ", " +
-            arr[i].OS + ", " +
-            arr[i].RAM + ", " +
-            arr[i].languages
+          const link = document.createElement("a");
+          const linknode = document.createTextNode(
+            
           );
+          const para = document.createElement("a");
+          const node = document.createTextNode();
           para.appendChild(node);
 
           console.log(node);

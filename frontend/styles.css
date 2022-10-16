@@ -18,7 +18,10 @@ div {
 
   text-align: center;
 }
-
+#list {
+  width: 90%;
+  text-align: left;
+}
 .side {
   float: left;
 }
