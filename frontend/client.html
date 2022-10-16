@@ -25,17 +25,15 @@
   <script>
     window.onload = async function checkproviders() {
       let arr = await getProviders();
-      console.log(arr);
 
-      console.log(arr[1].CPU);
-      for (i = 0; i < arr.length; i++) {
+      arr.forEach(provider => {
         const element = document.getElementById("list");
 
         const a = document.createElement('a');
-        const anode = document.createTextNode("Choose this provider.");
-        a.appendChild(anode);
+        const aNode = document.createTextNode("Choose this provider.");
+        a.appendChild(aNode);
         a.href = "./request.html";
-        a.id = arr[i].uid;
+        a.id = provider.uid;
         a.addEventListener("click", (a) => {
           localStorage.setItem("to_provider_id", a.path[0].id);
         });
@@ -43,19 +41,16 @@
 
         const para = document.createElement("p");
         const node = document.createTextNode(
-          arr[i].name + ", " +
-          arr[i].CPU + ", " +
-          arr[i].GPU + ", " +
-          arr[i].OS + ", " +
-          arr[i].RAM + ", " +
-          arr[i].languages
+          provider.name + ", " +
+          provider.CPU + ", " +
+          provider.GPU + ", " +
+          provider.OS + ", " +
+          provider.RAM + ", " +
+          provider.languages
         );
         para.appendChild(node);
-
-        console.log(node);
-
-        element.appendChild(para)
-      }
+        element.appendChild(para);
+      });
 
 
     }
