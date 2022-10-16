@@ -21,12 +21,26 @@
 
     </div>
     <script>
+      const click = (uid) => {
+         console.log(uid);
+      }
+      
       window.onload = async function checkproviders() {
         let arr = await getProviders();
         console.log(arr);
 
         console.log(arr[1].CPU);
         for (i = 0; i < arr.length; i++) {
+          const element = document.getElementById("list");
+          
+          const a = document.createElement('a'); 
+          const anode = document.createTextNode("Choose this provider.");
+          a.appendChild(anode);
+          a.href = "./request.html";
+          a.id = arr[i].uid;
+          a.addEventListener("click", click(a.id));
+          element.appendChild(a)
+
           const para = document.createElement("p");
           const node = document.createTextNode(
             arr[i].name + ", " +
@@ -39,9 +53,11 @@
           para.appendChild(node);
 
           console.log(node);
-          const element = document.getElementById("list");
+          
           element.appendChild(para)
         }
+
+        
       }
     </script>
   </body>
