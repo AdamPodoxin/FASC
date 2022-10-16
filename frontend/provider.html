@@ -4,8 +4,6 @@
 
   <head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link href="./styles.css" rel="stylesheet">
     <title>Find a Stronger Computer</title>
     <style>
@@ -18,6 +16,10 @@
         transform: translateY(-50%);
       }
     </style>
+
+	<script type="module" src="../backend/api.js" defer></script>
+	<script src="./provider.js" defer></script>
+
   </head>
   <body>
     <script type = "text/javascript">
@@ -31,16 +33,15 @@
       }
 
         // When a file is sent. How tf do I do this?
-        var fileUrl = "https://firebasestorage.googleapis.com/v0/b/fasc-ec621.appspot.com/o/code_files%2Fmain.c?alt=media&token=bb86377a-2d81-4d5e-9559-9e678a93f0b8";
-        download(fileUrl, "main");
+        // var fileUrl = "https://firebasestorage.googleapis.com/v0/b/fasc-ec621.appspot.com/o/code_files%2Fmain.c?alt=media&token=bb86377a-2d81-4d5e-9559-9e678a93f0b8";
+        // download(fileUrl, "main");
 
     </script>
 
     <div id="center">
+      <a id="download-link" download>Download file to compile</a>
       <input type="file" id="file">
-      <button onclick="uploadCodeFile()">Send Back To Client</button>
+      <button onclick="upload();">Send Back To Client</button>
     </div>
-
-    <script src="./renderer.js"></script>
   </body>
 </html>
