@@ -1,3 +1,8 @@
+const uid = localStorage.getItem('uid');
+if (uid != null) {
+    window.location.href = "./landing.html";
+}
+
 const registration = async () => {
     
     let name = document.getElementById("name").value;

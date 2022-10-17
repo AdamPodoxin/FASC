@@ -2,15 +2,14 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./loginstyles.css" rel="stylesheet">
+    <link href="./css/loginstyles.css" rel="stylesheet">
     <title>Find a Stronger Computer</title>
-    <script type="module" src="./api.js" defer></script>
+    <script type="module" src="./js/api.js" defer></script>
+    <script src="./js/login.js" defer></script>    
   </head>
   <body>
-    <a href="./provider.html">click me -> provider.html</a>
     <div id="loginbox">
       <h1>FASC</h1>
       Find A Stronger Computer<br><br>
@@ -23,16 +22,5 @@
       <textarea class="field" id="lang" placeholder="Languages (Separate by comma without spaces)"></textarea>
         <button id="login-form-submit">Upload</button>
     </div>
-    
-    <script src="./login.js"></script>
-    <script>
-      window.onload = function checklogin() {
-        let uid = localStorage.getItem('uid');
-        if (uid != null) {
-          window.location.href = "./landing.html";
-        }
-      }
-    </script>
-    
   </body>
 </html>
