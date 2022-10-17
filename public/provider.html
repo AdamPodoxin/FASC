@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider View</title>
   <link href="./styles.css" rel="stylesheet">
-  <title>Find a Stronger Computer</title>
-  <script type="module" src="../backend/api.js" defer></script>
-  <script src="./client.js" defer></script>
+  <script type="module" src="./api.js" defer></script>
+  <script src="./provider.js" defer></script>
 </head>
 
 <body>
@@ -17,13 +17,9 @@
     <li><a href="./provider.html">Provider</a></li>
   </ul>
 
-  <div id="requests-list">
-    <p>Completed requests:</p>
-  </div>
+  <div id="list">
+    <p>Filename</p>
 
-  <div id="providers-list">
-    <p>Available providers:</p>
-    <p>Name, CPU, GPU, OS, RAM, Languages Supported</p>
   </div>
 </body>
 
