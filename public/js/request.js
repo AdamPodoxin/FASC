@@ -1,5 +1,5 @@
 const id = localStorage.getItem("id");
-const toProviderID = localStorage.getItem("to_provider_uid");
+const toProviderID = localStorage.getItem("to_provider_id");
 
 const upload = async () => {
 	const selectedFile = document.getElementById("file").files[0];

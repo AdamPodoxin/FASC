@@ -54,7 +54,7 @@ const getUsers = async () => {
 window.getUsers = getUsers;
 
 const registerUser = async (name, CPU, GPU, RAM, OS, languages) => {
-	const res = await addDoc(usersCollection, {
+	const doc = await addDoc(usersCollection, {
 		name,
 		CPU,
 		GPU,
@@ -63,7 +63,7 @@ const registerUser = async (name, CPU, GPU, RAM, OS, languages) => {
 		languages,
 	});
 
-	return res.id;
+	return doc.id;
 };
 window.registerUser = registerUser;
 
@@ -92,3 +92,27 @@ const uploadFile = async (userID, file) => {
 	return fileRef;
 };
 window.uploadFile = uploadFile;
+
+const getCompileRequests = async (id) => {
+	const q = query(requestsCollection, where("to", "==", id));
+	const querySnapshot = await getDocs(q);
+	let requestList = [];
+	querySnapshot.docs.forEach((request) => {
+		const data = request.data();
+		const requestID = request.id;
+
+		requestList.push({
+			...data,
+			requestID,
+		});
+	});
+
+	return requestList;
+};
+window.getCompileRequests = getCompileRequests;
+
+const getFileInfo = async (fileRef) => {
+	const fileDoc = await getDoc(fileRef);
+	return fileDoc.data();
+};
+window.getFileInfo = getFileInfo;
