@@ -3,6 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebas
 import {
 	getFirestore,
 	collection,
+	addDoc,
 	deleteDoc,
 	query,
 	where,
@@ -34,28 +35,16 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-// https://stackoverflow.com/a/6248722
-const generateUID = () => {
-	var firstPart = (Math.random() * 46656) | 0;
-	var secondPart = (Math.random() * 46656) | 0;
-	firstPart = ("000" + firstPart.toString(36)).slice(-3);
-	secondPart = ("000" + secondPart.toString(36)).slice(-3);
-	return firstPart + secondPart;
+const getUsers = async () => {
+	const usersCollection = collection(db, "users");
+	const usersSnapshot = await getDocs(usersCollection);
+	const usersList = usersSnapshot.docs.map((doc) => doc.data());
+	return usersList;
 };
+window.getUsers = getUsers;
 
-const getProviders = async () => {
-	const providersCollection = collection(db, "providers");
-	const providersSnapshot = await getDocs(providersCollection);
-	const providersList = providersSnapshot.docs.map((doc) => doc.data());
-	return providersList;
-};
-window.getProviders = getProviders;
-
-const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
-	const uid = generateUID();
-
-	await setDoc(doc(db, "providers", uid), {
-		uid,
+const registerUser = async (name, CPU, GPU, RAM, OS, languages) => {
+	const res = await addDoc(usersCollection, {
 		name,
 		CPU,
 		GPU,
@@ -64,9 +53,9 @@ const registerAccount = async (name, CPU, GPU, RAM, OS, languages) => {
 		languages,
 	});
 
-	return uid;
+	return res.id;
 };
-window.registerAccount = registerAccount;
+window.registerUser = registerUser;
 
 const sendCompileRequest = async (
 	from,
