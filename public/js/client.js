@@ -47,7 +47,7 @@ getCompletedRequestsList(localStorage.getItem("uid")).then((arr) => {
 	});
 });
 
-getProviders().then((arr) => {
+getUsers().then((arr) => {
 	arr.forEach((provider) => {
 		const a = document.createElement("a");
 		const aNode = document.createTextNode("Choose this provider.");

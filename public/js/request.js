@@ -1,13 +1,12 @@
-const uid = localStorage.getItem("uid");
-const toProviderUID = localStorage.getItem("to_provider_uid");
+const id = localStorage.getItem("id");
+const toProviderID = localStorage.getItem("to_provider_uid");
 
 const upload = async () => {
 	const selectedFile = document.getElementById("file").files[0];
-	const fileName = selectedFile.name;
 	const instructions = document.getElementById("instructions").value;
 
-	const url = await sendCodeFile(uid, toProviderUID, selectedFile);
-	await sendCompileRequest(uid, toProviderUID, url, fileName, instructions);
+	const fileRef = await uploadFile(id, selectedFile);
+	await createRequest(id, toProviderID, instructions, fileRef);
 
 	window.location = "./client.html";
 };

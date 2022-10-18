@@ -1,5 +1,5 @@
-const uid = localStorage.getItem("uid");
-if (uid != null) {
+const id = localStorage.getItem("id");
+if (id != null) {
 	window.location.href = "./landing.html";
 }
 
