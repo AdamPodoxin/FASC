@@ -41,7 +41,14 @@ const filesCollection = collection(db, "files");
 
 const getUsers = async () => {
 	const usersSnapshot = await getDocs(usersCollection);
-	const usersList = usersSnapshot.docs.map((doc) => doc.data());
+	let usersList = [];
+	usersSnapshot.docs.forEach((doc) => {
+		usersList.push({
+			...doc.data(),
+			id: doc.id,
+		});
+	});
+
 	return usersList;
 };
 window.getUsers = getUsers;

@@ -26,52 +26,31 @@ function downloadResource(url, filename) {
 		.catch((e) => console.error(e));
 }
 
-getCompletedRequestsList(localStorage.getItem("uid")).then((arr) => {
-	arr.forEach((completedRequest) => {
-		const a = document.createElement("a");
-		const aNode = document.createTextNode(
-			`Download ${completedRequest.fileName}`
-		);
-		a.appendChild(aNode);
-		a.fileURL = completedRequest.fileURL;
-		a.fileName = completedRequest.fileName;
-		a.requestName = `${completedRequest.from}_${completedRequest.to}`;
-		a.addEventListener("click", (a) => {
-			const fileURL = a.path[0].fileURL;
-			const fileName = a.path[0].fileName;
-			downloadResource(fileURL, fileName);
-
-			deleteCompiledMessage(a.path[0].requestName);
-		});
-		completedRequestsList.appendChild(a);
-	});
-});
-
 getUsers().then((arr) => {
-	arr.forEach((provider) => {
+	arr.forEach((user) => {
 		const a = document.createElement("a");
 		const aNode = document.createTextNode("Choose this provider.");
 		a.appendChild(aNode);
 		a.href = "./request.html";
-		a.id = provider.uid;
+		a.id = user.id;
 		a.addEventListener("click", (a) => {
-			localStorage.setItem("to_provider_uid", a.path[0].id);
+			localStorage.setItem("to_provider_id", a.path[0].id);
 		});
 		providersList.appendChild(a);
 
 		const para = document.createElement("p");
 		const node = document.createTextNode(
-			provider.name +
+			user.name +
 				", " +
-				provider.CPU +
+				user.CPU +
 				", " +
-				provider.GPU +
+				user.GPU +
 				", " +
-				provider.OS +
+				user.OS +
 				", " +
-				provider.RAM +
+				user.RAM +
 				", " +
-				provider.languages
+				user.languages
 		);
 		para.appendChild(node);
 		providersList.appendChild(para);
